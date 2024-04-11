@@ -64,6 +64,12 @@ Text(mLocal,style: const TextStyle(fontSize: 16.0, color: Color(0xFF3D3D3D)),tex
 '  
 const Divider(height: 1.0,color: Color(0x3D7E868E),),
 '
+## 给界面赋予名称:
+'Navigator.push(
+        context, MaterialPageRoute(settings: const RouteSettings(name: '/main'),builder: (context)=>Acceptance(projectAbstract: myAbstract[index],)),
+    );  
+'   
+### 该方法会给进入的页面赋予名称,即Acceptance == '/main'
 # 修改andorid目录下的gradle文件
 ## 修改gradle文件，添加的内容需要放在pluginManagement {}和plugins {}块之后
 
