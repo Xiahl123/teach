@@ -107,6 +107,8 @@ mControl.addListener(() {
         mValue = double.parse(mControl.text);
       });
     });
+## substring
+substring 左闭右开
 
 
 
