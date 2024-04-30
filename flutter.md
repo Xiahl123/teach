@@ -1,5 +1,8 @@
 # flutter 安装环境
+## windows
 	sdk path:/home/xiahl/snap/flutter/common/flutter
+## ubuntu
+	/home/xiahl/snap/flutter/common/flutter/bin/cache/dart-sdk
 ## Dart环境,配置flutter环境后，自动配置dart环境
 ## flutter更新，dart会自动匹配版本更新
 	flutter upgrade   
