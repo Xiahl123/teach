@@ -1,5 +1,8 @@
 # flutter 安装环境
 	sdk path:/home/xiahl/snap/flutter/common/flutter
+## 设置macos flutter环境
+打开vim ~/.zshrc文件,输入:export PATH='当前路径'/flutter/bin:$PATH
+source .zshrc
 ## Dart环境,配置flutter环境后，自动配置dart环境
 ## flutter更新，dart会自动匹配版本更新
 	flutter upgrade   
@@ -66,4 +69,9 @@ const Divider(height: 1.0,color: Color(0x3D7E868E),),
 '
 # 修改andorid目录下的gradle文件
 ## 修改gradle文件，添加的内容需要放在pluginManagement {}和plugins {}块之后
-
+# app国际化 https://blog.csdn.net/qq_27909209/article/details/125927908
+## 在android->Settings中添加扩展Flutter Intl
+## 在tools->Flutter Intl中选择初始化intl
+## 初始化后lib文件夹下会生成generated和l10n文件,l10n中的是不同语言的arb文件,generated中的是编译后的文件dart,可调用
+## 生成文件后,使用tools->Flutter Intl->add local添加其他语言文件
+## 在代码中的调用方法:S.of(current).xxxx或者S.of(context).xxxx即可获取对应语言的字符串
