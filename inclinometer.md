@@ -7,6 +7,8 @@ com.hkcrc.inclinometer(ios和android相同)
 钥匙串密码:hkcrc
 ### ios SKU(APP专有id)
 inclinometer
+### apple id
+6503274829
 ### ios上传
 生成ios包后,运行flutter build ipa命令,生成ipa
 上传Transporter文件位置: build/ios/ipa/*.ipa

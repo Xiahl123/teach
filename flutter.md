@@ -3,6 +3,8 @@
 ## 设置macos flutter环境
     打开vim ~/.zshrc文件,输入:export PATH='当前路径'/flutter/bin:$PATH
     source .zshrc
+## ubuntu
+	/home/xiahl/snap/flutter/common/flutter/bin/cache/dart-sdk
 ## Dart环境,配置flutter环境后，自动配置dart环境
 ## flutter更新，dart会自动匹配版本更新
 	  flutter upgrade   
@@ -242,9 +244,15 @@
 
           static final NavigatorProvider _instance = NavigatorProvider._();
 
+<<<<<<< .mine
           NavigatorProvider._();
 
+=======
+'
+	width: 97*widthFactor,
+>>>>>>> .theirs
           /// 赋值给根布局的 materialApp 上
+<<<<<<< .mine
           /// navigatorKey.currentState.pushName('url') 可直接用于跳转
           static GlobalKey<NavigatorState> get navigatorKey => _instance._navigatorKey;
 
@@ -260,6 +268,71 @@
         3.1路由操作(NavigatorProvider.navigatorKey.currentState即当前的context):NavigatorProvider.navigatorKey.currentState?.popUntil(ModalRoute.withName('/'));//返回至主页面
         3.2toast操作(NavigatorProvider.navigatorContext!即当前的context):globalDisconnectToast(NavigatorProvider.navigatorContext!);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+'
+### 绘制背景(包括：边框线，背景色，等)
+'
+decoration: BoxDecoration(//背景装饰选项
+	border:Border.all(
+	  color: const Color(0x3D7E868E),
+	  width: 1,
+	),
+	borderRadius:BorderRadius.circular(8),
+	color: const Color(0xFFFFFFFF),
+	),
+'
+### 绘制前景(在child上绘制)：foregroundDecoration
+### 设定child的对齐方式：alignment
+### 设置margin,margin会将前景，背景及child全部排除在外，相当于独立的widget，不属于Container的大小限制
+### 设置padding,padding属于Container,收到Container的限制,与margin一样，都使用
+'EdgeInsets.only(left: padDataFront*widthFactor,right: padDataBack*widthFactor)',描述
+## Text：
+'  
+Text(mLocal,style: const TextStyle(fontSize: 16.0, color: Color(0xFF3D3D3D)),textAlign: TextAlign.center,),
+'
+### style属性：
+fontsize(字体大小，pt),color(文字颜色),fontWeight: FontWeight.bold(文字加粗)
+### textAlign(文字对齐，指横向对齐方式)
+## Divider分割线
+'  
+const Divider(height: 1.0,color: Color(0x3D7E868E),),
+'
+>>>>>>> .theirs
+## 给界面赋予名称:
+'Navigator.push(
+        context, MaterialPageRoute(settings: const RouteSettings(name: '/main'),builder: (context)=>Acceptance(projectAbstract: myAbstract[index],)),
+    );  
+'   
+## Scrollbar(显示滑动的进度条)  
+## 国际化文件生成命令:
+flutter gen-l10n  
+## 点击输入框,弹出键盘后,提示超出界面距离
+在scaffold的属性resizeToAvoidBottomInset设置为false即可阻止页面内容随键盘弹出而滚动.
+resizeToAvoidBottomInset: false,
+
+### 该方法会给进入的页面赋予名称,即Acceptance == '/main'
+### 获取本地语言
+ WidgetsBinding.instance.platformDispatcher.locale
+### 监听数据变化,重构
+ValueListenableBuilder(
+              valueListenable: mActivateAreaChange,
+              builder: (BuildContext context, value, Widget? child) {
+                return buildMeasureItem(fContext,index);
+              },
+            ),
 # 修改andorid目录下的gradle文件
     修改gradle文件，添加的内容需要放在pluginManagement {}和plugins {}块之后
 # app国际化 https://blog.csdn.net/qq_27909209/article/details/125927908
@@ -272,4 +345,6 @@
 ## 函数可选操作
     对于可选参数,定义使用[],在必须参数之后进行定义,并可以设置默认选项:Widget buildTableChildCell(bool fLeft,bool fBottom,String fContent, [Color fColor=const Color(0xFF333333)])
   
+
+
 
