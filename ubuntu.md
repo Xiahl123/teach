@@ -15,7 +15,7 @@
 ## 安装.run文件
 chmod +x ***.run
 ./***.run
-### 安装dep
+### 安装deb
 sudo dpkg -i ***.deb 
 
 ## 卸载
@@ -103,4 +103,8 @@ rar a filename.rar dirname
 在命令前添加sudo
 ##显示当前目录
 pwd
-
+## 查看程序的所有依赖项
+ldd 程序名
+## tmux
+tmux是启用多会话窗口的工具
+教程：https://www.ruanyifeng.com/blog/2019/10/tmux.html
