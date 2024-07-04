@@ -1,5 +1,5 @@
 # ubuntu_QT
-包名：hkcrcCockpit
+包名：hkcrccockpit
 ## 使用ffmpeg
 sudo install ffmpeg
 ## 使用linuxdeployqt打包qt软件时，添加至bashrc的文件路径：https://blog.csdn.net/zyhse/article/details/106381937/
@@ -12,7 +12,7 @@ source ~/.bashrc
 ### 测试是否添加成功
 qmake -v   查看是否能输出PATH路径
 ## 新建一个文件夹用于打包软件
-将release版本的软件复制到该目录下，然后执行以下命令：linuxdeployqt ****** -appimage
+将release版本的软件复制到该目录下，然后执行以下命令：linuxdeployqt release名称 -appimage
 如果终端报错：没有桌面文件和没有启动图标，之后再另行配置
 在上述文件夹中生成了相应的lib目录，将需要的资源文件及配置文件复制到该目录下
 
@@ -25,10 +25,10 @@ export QML2_PATH=""
 ### 启动应用
 ./****
 ## 打包为deb文件
-新建output/source/,再新建DEBIAN,opt文件夹，将刚才打包生成的所有文件拷贝到此处
+新建source,在source中新建DEBIAN,opt文件夹，将刚才打包生成的所有文件拷贝到此处opt中
 ### 配置桌面启动文件
-修改defalut.desktop为****.desktop
-该文件内容（按注释修改））：
+修改defalut.desktop为：应用名.desktop
+该文件内容（按注释修改）：
 [Desktop Entry]
 Type=Application
 Name=My Test                    #应用的名字(快捷方式显示的文字)
@@ -67,7 +67,13 @@ rm /usr/share/applications/Test.desktop
 rm ~/Desktop/Test.desktop
 ### 给DEBIAN添加权限755
 sudo chmod -R 755 DEBIAN
-### 最后执行dpkg -b . 生成路径/output.deb
+### 最后回到source文件夹，执行dpkg -b . 生成路径/output.deb
+
+## 问题解决
+### 报错信息：无法创建 root/Desktop/****.desktop
+手动到root下创建Desktop文件夹，然后卸载安装包，然后使用下面的方法清理残留
+### 卸载安装包失败，提示：无法 删除~/Desktop/****.desktop
+打开terminal:输入：sudo rm /var/lib/dpkg/info/包名*
 
 
 

@@ -17,6 +17,8 @@ chmod +x ***.run
 ./***.run
 ### 安装deb
 sudo dpkg -i ***.deb 
+### 卸载deb
+sudo dpkg -r ***.deb
 
 ## 卸载
 apt --fix-broken install
