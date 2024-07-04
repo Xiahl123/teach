@@ -14,10 +14,17 @@
     1.Future async/await
       这种方式与android不同,它是把await的部分放到空闲时执行,没有启动多线程执行
       处于不阻塞主线程的考虑,这种方式将代码放到event队列中等待执行
-    2.ioslate
+    2.ioslate.spawn
       这种方式是开启多线程执行,但是这种方式不共享数据,数据需要进行线程传输
-    3.compute
-      这种方式只能执行顶级函数即static函数,且只能传递一个参数,返回值也只有一个
+      使用receiveport进行通信,可以将父子线程中的receiveport的sendport发送给对方以实现双向通信
+      在使用完毕receiveport之后,使用receiveport.close()关闭通信通道
+      子线程的生命周期:
+      暂停:isolate.pause(isolate.pauseCapability)
+      恢复:isolate.resume(isolate.pauseCapability)
+      结束:isolate.kill(isolate.immediate)
+    3.Isolate.run 
+    4.compute
+      这种方式只能执行顶级函数(不存在于任何类中)即static函数(存在于类中),且只能传递一个参数,返回值也只有一个,并且不能连续传值计算,及线程不能长期存在
       _count = await compute(countEven, 1000000000);
 # 控件,一些控件简介:https://m3.material.io/components/date-pickers/accessibility
     填充使用:padding: EdgeInsets.only(left:16*widthFactor,right: 16*widthFactor),
@@ -244,15 +251,9 @@
 
           static final NavigatorProvider _instance = NavigatorProvider._();
 
-<<<<<<< .mine
           NavigatorProvider._();
 
-=======
-'
-	width: 97*widthFactor,
->>>>>>> .theirs
           /// 赋值给根布局的 materialApp 上
-<<<<<<< .mine
           /// navigatorKey.currentState.pushName('url') 可直接用于跳转
           static GlobalKey<NavigatorState> get navigatorKey => _instance._navigatorKey;
 
@@ -267,50 +268,6 @@
        3.在其他界面文件中使用
         3.1路由操作(NavigatorProvider.navigatorKey.currentState即当前的context):NavigatorProvider.navigatorKey.currentState?.popUntil(ModalRoute.withName('/'));//返回至主页面
         3.2toast操作(NavigatorProvider.navigatorContext!即当前的context):globalDisconnectToast(NavigatorProvider.navigatorContext!);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-'
-### 绘制背景(包括：边框线，背景色，等)
-'
-decoration: BoxDecoration(//背景装饰选项
-	border:Border.all(
-	  color: const Color(0x3D7E868E),
-	  width: 1,
-	),
-	borderRadius:BorderRadius.circular(8),
-	color: const Color(0xFFFFFFFF),
-	),
-'
-### 绘制前景(在child上绘制)：foregroundDecoration
-### 设定child的对齐方式：alignment
-### 设置margin,margin会将前景，背景及child全部排除在外，相当于独立的widget，不属于Container的大小限制
-### 设置padding,padding属于Container,收到Container的限制,与margin一样，都使用
-'EdgeInsets.only(left: padDataFront*widthFactor,right: padDataBack*widthFactor)',描述
-## Text：
-'  
-Text(mLocal,style: const TextStyle(fontSize: 16.0, color: Color(0xFF3D3D3D)),textAlign: TextAlign.center,),
-'
-### style属性：
-fontsize(字体大小，pt),color(文字颜色),fontWeight: FontWeight.bold(文字加粗)
-### textAlign(文字对齐，指横向对齐方式)
-## Divider分割线
-'  
-const Divider(height: 1.0,color: Color(0x3D7E868E),),
-'
->>>>>>> .theirs
 ## 给界面赋予名称:
 'Navigator.push(
         context, MaterialPageRoute(settings: const RouteSettings(name: '/main'),builder: (context)=>Acceptance(projectAbstract: myAbstract[index],)),
