@@ -2,6 +2,9 @@
 包名：hkcrccockpit
 ## 使用ffmpeg
 sudo install ffmpeg
+## 使用vtk
+使用源码安装pcl1.8.1和vtk7.1
+遇到bug查找：https://blog.csdn.net/dui845819593/article/details/128486864
 ## 使用linuxdeployqt打包qt软件时，添加至bashrc的文件路径：https://blog.csdn.net/zyhse/article/details/106381937/
 export PATH=/home/xiahl/Qt5.14.2/5.14.2/gcc_64/bin:$PATH
 export LIB_PATH=/home/xiahl/Qt5.14.2/5.14.2/gcc_64/lib:$LIB_PATH
@@ -74,6 +77,14 @@ sudo chmod -R 755 DEBIAN
 手动到root下创建Desktop文件夹，然后卸载安装包，然后使用下面的方法清理残留
 ### 卸载安装包失败，提示：无法 删除~/Desktop/****.desktop
 打开terminal:输入：sudo rm /var/lib/dpkg/info/包名*
+## QThread
+### work继承QThread,把耗时工作放到run函数中执行
+  只有run函数中的部分会运行在子线程中，其余部分运行在主线程，包括初始化等
+  安全退出，使用信号让run函数return即可
+### work继承QObject,使用moveToThread移动到子线程运行
+  安全退出，使用：一个是QThread的finished信号对接QObject的deleteLater使得线程结束后，继承QObject的那个多线程类会自己销毁
+  connect(this, &Controller::operate, worker, &Worker::doWork);
 
+  
 
 

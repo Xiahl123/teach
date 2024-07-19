@@ -110,3 +110,4 @@ ldd 程序名
 ## tmux
 tmux是启用多会话窗口的工具
 教程：https://www.ruanyifeng.com/blog/2019/10/tmux.html
+## 编译库，可以使用make -j8使用多核编译，也可以-j4
