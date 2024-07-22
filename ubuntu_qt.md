@@ -1,7 +1,10 @@
 # ubuntu_QT
 包名：hkcrccockpit
 ## 使用ffmpeg
-sudo install ffmpeg
+sudo apt-get install ffmpeg
+使用ubuntu 22.04安装的是ffmpeg 4.4.2,会出现avdevice库找不到的情况,可以直接sudo apt-get install libavdevice-dev(直接安装这个库)
+## qt5安装有一些组件不会自动安装,可以手动安装,比如multimedia
+sudo apt-get insatll qtmultimedia5-dev
 ## 使用vtk
 使用源码安装pcl1.8.1和vtk7.1
 遇到bug查找：https://blog.csdn.net/dui845819593/article/details/128486864
