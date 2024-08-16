@@ -22,7 +22,7 @@
       暂停:isolate.pause(isolate.pauseCapability)
       恢复:isolate.resume(isolate.pauseCapability)
       结束:isolate.kill(isolate.immediate)
-    3.Isolate.run 
+    3.Isolate.run
     4.compute
       这种方式只能执行顶级函数(不存在于任何类中)即static函数(存在于类中),且只能传递一个参数,返回值也只有一个,并且不能连续传值计算,及线程不能长期存在
       _count = await compute(countEven, 1000000000);
