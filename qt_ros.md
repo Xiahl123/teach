@@ -8,3 +8,5 @@ https://blog.csdn.net/u014610460/article/details/83589983
 ## ros::spin和spinOnce
 ### spin等待循环队列消息，出现消息马上调用回调，会阻塞线程
 ### spinOnce调用一次，读取消息队列中的第一个消息消息，不会阻塞线程
+# qt使用ros2
+

@@ -14,4 +14,10 @@ http://www.autolabor.com.cn/book/ROSTutorials/chapter1/15-ben-zhang-xiao-jie/151
 再打开一个terminal,进入工作空间
 输入：source ./devel/setup.bash  ，为了使更改立即生效，主要是环境修改
 输入：rosrun 包名 c++节点名
-
+# ros2安装
+sudo apt install ros-humble-desktop
+# 写入环境变量
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+# 卸载
+sudo apt remove ros-humble-*
+sudo apt autoremove
