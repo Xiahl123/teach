@@ -9,4 +9,7 @@ https://blog.csdn.net/u014610460/article/details/83589983
 ### spin等待循环队列消息，出现消息马上调用回调，会阻塞线程
 ### spinOnce调用一次，读取消息队列中的第一个消息消息，不会阻塞线程
 # qt使用ros2
-
+## 编译
+使用colcon编译，colcon是封装了好几个编译工具的集合，默认使用cmake编译，所以使用colcon编译qt是合理的
+## 代码工具
+使用vsvode,在terminal下进行build

@@ -1,5 +1,7 @@
 # ubuntu_QT
 包名：hkcrccockpit
+## qt安装
+sudo apt-get install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools qtcreator
 ## 使用ffmpeg
 sudo apt-get install ffmpeg
 使用ubuntu 22.04安装的是ffmpeg 4.4.2,会出现avdevice库找不到的情况,可以直接sudo apt-get install libavdevice-dev(直接安装这个库)
@@ -8,6 +10,20 @@ sudo apt-get insatll qtmultimedia5-dev
 ## 使用vtk
 使用源码安装pcl1.8.1和vtk7.1
 遇到bug查找：https://blog.csdn.net/dui845819593/article/details/128486864
+## 打包
+### 下载
+使用工具linuxdeployqt  下载地址：https://github.com/probonopd/linuxdeployqt/releases
+下载appimage,即是可执行文件
+### 安装
+进入download首先缩短名称：mv linuxdeployqt-6-x86_64.AppImage linuxdeployqt
+然后添加权限：chmod 777 linuxdeployqt
+最后移动到： sudo mv linuxdeployqt /usr/local/bin
+测试安装：linuxdeployqt --version
+### 如果出现fusu包错误，如下处理
+https://github.com/AppImage/AppImageKit/wiki/FUSE
+## 编译
+colcon编译release：colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
+##注意，一下打包方法仅适用于20.04,不适用于22.04
 ## 使用linuxdeployqt打包qt软件时，添加至bashrc的文件路径：https://blog.csdn.net/zyhse/article/details/106381937/
 export PATH=/home/xiahl/Qt5.14.2/5.14.2/gcc_64/bin:$PATH
 export LIB_PATH=/home/xiahl/Qt5.14.2/5.14.2/gcc_64/lib:$LIB_PATH
@@ -66,6 +82,7 @@ Description：软件包描述。
 chmod 777 /opt/Test/Test.desktop
 cp /opt/Test/Test.desktop /usr/share/applications/
 cp /opt/Test/Test.desktop ~/Desktop/
+### 或许应该复制到：/home/xiahl/Desktop
 ### 创建卸载deb包之后的postrm文件
 在DEBIAN目录下新建postrm文件，内容如下：
 #!/bin/sh
@@ -80,6 +97,10 @@ sudo chmod -R 755 DEBIAN
 手动到root下创建Desktop文件夹，然后卸载安装包，然后使用下面的方法清理残留
 ### 卸载安装包失败，提示：无法 删除~/Desktop/****.desktop
 打开terminal:输入：sudo rm /var/lib/dpkg/info/包名*
+
+## 22.04 qt 打包方法如下：
+https://blog.csdn.net/linuxandroidwince/article/details/134649712
+
 ## QThread
 ### work继承QThread,把耗时工作放到run函数中执行
   只有run函数中的部分会运行在子线程中，其余部分运行在主线程，包括初始化等
