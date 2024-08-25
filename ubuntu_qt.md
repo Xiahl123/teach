@@ -1,4 +1,8 @@
 # ubuntu_QT
+## 下载
+下载地址：https://download.qt.io/archive/qt/5.14/5.14.2/
+## 安装地址
+opt/Qt***
 包名：hkcrccockpit
 ## qt安装
 sudo apt-get install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools qtcreator
