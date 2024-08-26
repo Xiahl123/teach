@@ -9,6 +9,8 @@ sudo apt-get install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools qtcreator
 ## 使用ffmpeg
 sudo apt-get install ffmpeg
 使用ubuntu 22.04安装的是ffmpeg 4.4.2,会出现avdevice库找不到的情况,可以直接sudo apt-get install libavdevice-dev(直接安装这个库)
+### ffmpeg使用教程
+https://github.com/0voice/ffmpeg_develop_doc/blob/main/FFmpeg%20%E5%AD%A6%E4%B9%A0(%E4%B8%80)%EF%BC%9AFFmpeg%20%E7%AE%80%E4%BB%8B%20.md
 ## qt5安装有一些组件不会自动安装,可以手动安装,比如multimedia
 sudo apt-get insatll qtmultimedia5-dev
 ## 使用vtk
@@ -112,6 +114,12 @@ https://blog.csdn.net/linuxandroidwince/article/details/134649712
 ### work继承QObject,使用moveToThread移动到子线程运行
   安全退出，使用：一个是QThread的finished信号对接QObject的deleteLater使得线程结束后，继承QObject的那个多线程类会自己销毁
   connect(this, &Controller::operate, worker, &Worker::doWork);
+## debug信息
+### 项目使用colcon编译的时候，运行的可执行文件路径在：
+/home/xiahl/Documents/GitHub/cockpit_ubuntu/install/cockpit_ubuntu/lib/cockpit_ubuntu
+
+### 遇到/lib/x86_64-linux-gnu/libcaca.so.0: undefined reference to `mousemask@NCURSESW6_5.1.20000708'
+是conda中的ncurses引起的，使用conda uninstall --force ncurses可以解决这个问题
 
   
 
