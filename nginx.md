@@ -35,6 +35,8 @@ rtmp {
 location /live {
     flv_live on; #当HTTP请求以/live结尾，匹配这儿，这个选项表示开启了flv直播播放功能
     chunked_transfer_encoding  on; #HTTP协议开启Transfer-Encoding: chunked;方式回复
+    add_header 'Access-Control-Allow-Origin' '*'; #添加额外的HTTP头,跨越
+    add_header 'Access-Control-Allow-Credentials' 'true'; #添加额外的HTTP头
 }
 ## 推流命令
 推本地视频：ffmpeg -re -i ~/Videos/xinyang.mp4 -vcodec copy -acodec copy -f flv rtmp://127.0.0.1:1935/live/test
@@ -70,4 +72,4 @@ ffmpeg -f dshow -i video="screen-capture-recorder" -f dshow -i audio="virtual-au
 ## 3
 ffmpeg -video_size 6480x3840 -framerate 20 -f x11grab -i :1.0+0,0 -vcodec libx264 -pix_fmt yuv420p -preset:v ultrafast -acodec acc -f flv rtmp://192.168.1.2:1935/live/testv
 ## 4
- ffmpeg -video_size 6480x3840 -framerate 20 -f x11grab -i :1.0+0,0 -vcodec libx264 -pix_fmt yuv420p -preset:v ultrafast -f flv -flvflags no_duration_filesize rtmp://192.168.1.2:1935/live/testv
+ffmpeg -video_size 6480x3840 -framerate 20 -f x11grab -i :1.0+0,0 -vcodec libx264 -pix_fmt yuv420p -preset:v ultrafast -f flv -flvflags no_duration_filesize rtmp://192.168.1.2:1935/live/testv
