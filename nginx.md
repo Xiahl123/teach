@@ -37,8 +37,8 @@ location /live {
     chunked_transfer_encoding  on; #HTTP协议开启Transfer-Encoding: chunked;方式回复
 }
 ## 推流命令
-推本地视频：ffmpeg -re -i ~/Videos/xinyang.mp4 -vcodec copy -acodec copy -f flv "rtmp://127.0.0.1:1935/live/test"
-推其他视频流：ffmpeg -re -i rtmp://liteavapp.qcloud.com/live/liteavdemoplayerstreamid -c copy -f flv rtmp://127.0.0.1:1985/live/testv
+推本地视频：ffmpeg -re -i ~/Videos/xinyang.mp4 -vcodec copy -acodec copy -f flv rtmp://127.0.0.1:1935/live/test
+推其他视频流：ffmpeg -re -i rtmp://liteavapp.qcloud.com/live/liteavdemoplayerstreamid -c copy -f flv rtmp://127.0.0.1:1935/live/testv
 ## 可能发生的错误
 ### make时可能存在错误：
 config文件不存在：这是因为文件位置在受权限限制的文件夹中，移出即可
@@ -61,6 +61,13 @@ sudo nginx -t
 ### 推流时，对应访问的网址结构
 http://服务器ip:端口/dir?port=配置文件中http端口号&app=rtmp版块的application名称（上如live）&stream=流名称，可以随便，但必须有
 http://example.com[:port]/dir?port=xxx&app=appname&stream=streamname
-http://192.168.1.2:1935/dir?port=85&app=live&stream=testv
+http://192.168.1.2:1935/live?port=85&app=live&stream=testv
 ### 录屏推流命令
 ffmpeg -video_size 1920x1080 -f x11grab -draw_mouse 1 -i :1.0+0,0 -r 20.0 -vcodec libx264 -pix_fmt yuv420p -preset:v ultrafast -f flv rtmp://192.168.1.2:1935/live/testv
+
+ffmpeg -f dshow -i video="screen-capture-recorder" -f dshow -i audio="virtual-audio-capturer" -vcodec libx264 -preset:v ultrafast -pix_fmt yuv420p -acodec aac -f flv rtmp://172.17.178.120/myapp/test
+
+## 3
+ffmpeg -video_size 6480x3840 -framerate 20 -f x11grab -i :1.0+0,0 -vcodec libx264 -pix_fmt yuv420p -preset:v ultrafast -acodec acc -f flv rtmp://192.168.1.2:1935/live/testv
+## 4
+ ffmpeg -video_size 6480x3840 -framerate 20 -f x11grab -i :1.0+0,0 -vcodec libx264 -pix_fmt yuv420p -preset:v ultrafast -f flv -flvflags no_duration_filesize rtmp://192.168.1.2:1935/live/testv
