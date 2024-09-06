@@ -59,7 +59,7 @@ sudo nginx -s reload
 sudo nginx -t
 
 ### 推流时，对应访问的网址结构
-http://服务器ip:端口/dir?port=配置文件中http端口号&app=rtmp版块的application名称（上如live）&stream=流名称，可以随便，但必须有
+http://服务器ip:http端口/dir?port=配置文件中rtmp端口号&app=rtmp版块的application名称（上如live）&stream=流名称，可以随便，但必须有
 http://example.com[:port]/dir?port=xxx&app=appname&stream=streamname
 http://192.168.1.2:1935/live?port=85&app=live&stream=testv
 ### 录屏推流命令
