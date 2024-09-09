@@ -75,4 +75,13 @@ ffmpeg -video_size 6480x3840 -framerate 20 -f x11grab -i :1.0+0,0 -vcodec libx26
 ffmpeg -video_size 6480x3840 -framerate 20 -f x11grab -i :1.0+0,0 -vcodec libx264 -pix_fmt yuv420p -preset:v ultrafast -f flv -flvflags no_duration_filesize rtmp://192.168.1.2:1935/live/testv
 ## 5
 ffmpeg -video_size 1920*1080 -framerate 5 -f x11grab -i :1.0+0,0 -vcodec libx264 -pix_fmt yuv420p -preset:v ultrafast -f flv -bufsize 200000000 -rtbufsize 200000000 -flvflags no_duration_filesize rtmp://192.168.1.2:1935/live/testv
+##成功命令1,但并没有缩放成功，推流2m/s
+ffmpeg -video_size 6480*3840 -framerate 1 -f x11grab -i :1.0+0,0 -vcodec libx264 -pix_fmt yuv420p -vf "scale=1620:960" -preset:v ultrafast -f flv -bufsize 2000000000 -rtbufsize 2000000000 -flvflags no_duration_filesize rtmp://192.168.1.2:1935/live/testv
+
+##成功命令2,也没有缩放成功，推流2m/s
+ffmpeg -video_size 6480*3840 -framerate 1 -f x11grab -i :1.0+0,0 -vcodec libx264 -pix_fmt yuv420p -s 1620*960 -preset:v ultrafast -f flv -bufsize 2000000000 -rtbufsize 2000000000 -flvflags no_duration_filesize rtmp://192.168.1.2:1935/live/testv
+##成功命令，调用GPU解码
+ffmpeg -video_size 6480*3840 -framerate 10 -s 3240*1920 -f x11grab -i :1.0+0,0 -vcodec h264_nvenc -f flv -bufsize 2000000000 -rtbufsize 2000000000 -flvflags no_duration_filesize rtmp://192.168.1.2:1935/live/testv
+##最终命令
+ffmpeg -video_size 6480*3840 -framerate 10 -f x11grab -i :1.0+0,0 -vcodec h264_nvenc -s 3240*1920 -f flv -bufsize 2000000000 -rtbufsize 2000000000 -flvflags no_duration_filesize rtmp://192.168.1.2:1935/live/testv
 
