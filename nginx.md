@@ -73,3 +73,6 @@ ffmpeg -f dshow -i video="screen-capture-recorder" -f dshow -i audio="virtual-au
 ffmpeg -video_size 6480x3840 -framerate 20 -f x11grab -i :1.0+0,0 -vcodec libx264 -pix_fmt yuv420p -preset:v ultrafast -acodec acc -f flv rtmp://192.168.1.2:1935/live/testv
 ## 4
 ffmpeg -video_size 6480x3840 -framerate 20 -f x11grab -i :1.0+0,0 -vcodec libx264 -pix_fmt yuv420p -preset:v ultrafast -f flv -flvflags no_duration_filesize rtmp://192.168.1.2:1935/live/testv
+## 5
+ffmpeg -video_size 1920*1080 -framerate 5 -f x11grab -i :1.0+0,0 -vcodec libx264 -pix_fmt yuv420p -preset:v ultrafast -f flv -bufsize 200000000 -rtbufsize 200000000 -flvflags no_duration_filesize rtmp://192.168.1.2:1935/live/testv
+
