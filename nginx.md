@@ -84,4 +84,6 @@ ffmpeg -video_size 6480*3840 -framerate 1 -f x11grab -i :1.0+0,0 -vcodec libx264
 ffmpeg -video_size 6480*3840 -framerate 10 -s 3240*1920 -f x11grab -i :1.0+0,0 -vcodec h264_nvenc -f flv -bufsize 2000000000 -rtbufsize 2000000000 -flvflags no_duration_filesize rtmp://192.168.1.2:1935/live/testv
 ##最终命令
 ffmpeg -video_size 6480*3840 -framerate 10 -f x11grab -i :1.0+0,0 -vcodec h264_nvenc -s 3240*1920 -f flv -bufsize 2000000000 -rtbufsize 2000000000 -flvflags no_duration_filesize rtmp://192.168.1.2:1935/live/testv
+##硬件编解码参考：
+https://www.cnblogs.com/xlfqrxlf/p/16879357.html
 
