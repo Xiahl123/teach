@@ -121,6 +121,11 @@ https://blog.csdn.net/linuxandroidwince/article/details/134649712
 ### 遇到/lib/x86_64-linux-gnu/libcaca.so.0: undefined reference to `mousemask@NCURSESW6_5.1.20000708'
 是conda中的ncurses引起的，使用conda uninstall --force ncurses可以解决这个问题
 
+加入ros2编译：
+colcon build
+source install/setup.bash
+ros2 run *** ***
+
   
 
 
