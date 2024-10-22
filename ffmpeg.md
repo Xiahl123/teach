@@ -12,4 +12,9 @@ ffmpeg -re -i rtmp://liteavapp.qcloud.com/live/liteavdemoplayerstreamid -c copy 
 2.使用nginx和flv推流
 该方法可以用于web直播
 详细查看nginx文件
-
+# 硬件解码
+https://www.cnblogs.com/kn-zheng/p/17411539.html
+# 原始文档
+https://ffmpeg.org/doxygen/trunk/structAVCodecContext.html
+# 中文教程
+https://ffmpeg.xianwaizhiyin.net/api-ffmpeg/
