@@ -18,3 +18,9 @@ https://www.cnblogs.com/kn-zheng/p/17411539.html
 https://ffmpeg.org/doxygen/trunk/structAVCodecContext.html
 # 中文教程
 https://ffmpeg.xianwaizhiyin.net/api-ffmpeg/
+## 查看支持的編解碼支持,注意區分encode,decode
+ffmpeg -codecs
+## 查看支持的硬件加速器
+ffmpeg -hwaccels
+## 查看相關解碼器參數幫助
+ffmpeg -h encode=h264_nvenc
