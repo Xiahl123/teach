@@ -1,4 +1,5 @@
 # ubuntu_QT
+https://blog.csdn.net/weixin_48560325/article/details/124373125
 ## 下载
 下载地址：https://download.qt.io/archive/qt/5.14/5.14.2/
 ## 安装地址
@@ -29,7 +30,7 @@ sudo apt-get insatll qtmultimedia5-dev
 https://github.com/AppImage/AppImageKit/wiki/FUSE
 ## 编译
 colcon编译release：colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
-##注意，一下打包方法仅适用于20.04,不适用于22.04
+##注意，一下打包方法仅适用于20.04,22.04请参看：https://blog.csdn.net/corner_kew/article/details/138811620
 ## 使用linuxdeployqt打包qt软件时，添加至bashrc的文件路径：https://blog.csdn.net/zyhse/article/details/106381937/
 export PATH=/home/xiahl/Qt5.14.2/5.14.2/gcc_64/bin:$PATH
 export LIB_PATH=/home/xiahl/Qt5.14.2/5.14.2/gcc_64/lib:$LIB_PATH
@@ -52,6 +53,17 @@ export PLUGIN_PATH=""
 export QML2_PATH=""
 ### 启动应用
 ./****
+##文件结构
+source
+├── DEBIAN
+│   └── control
+│   └── postinst
+│   └── postrm
+├── opt
+    └── Test
+        ├── Test
+        └── xxx
+
 ## 打包为deb文件
 新建source,在source中新建DEBIAN,opt文件夹，将刚才打包生成的所有文件拷贝到此处opt中
 ### 配置桌面启动文件
@@ -106,6 +118,8 @@ sudo chmod -R 755 DEBIAN
 
 ## 22.04 qt 打包方法如下：
 https://blog.csdn.net/linuxandroidwince/article/details/134649712
+能有效提取依赖文件：
+https://blog.csdn.net/weixin_43479242/article/details/126704740
 
 ## QThread
 ### work继承QThread,把耗时工作放到run函数中执行

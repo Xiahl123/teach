@@ -1,3 +1,6 @@
+git配置：https://blog.csdn.net/qq_34160841/article/details/104838269
+
+
 <<<<<<< .mine
 # 提交私人仓库
 1.添加远程仓库:git remote add **** xxxxxx
