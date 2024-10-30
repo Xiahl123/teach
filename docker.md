@@ -24,5 +24,14 @@ docker container run -it ubuntu:20.04 /bin/bash
 * 退出容器：exit,退出的同时停止，exex,退出之后不停止
 * 重启已经停止的容器：docker restart <id>
 * 进入后台容器：docker attach <id>
+## 使用vscode连接ssh
+1. docker中安装ssh
+apt-get update
+apt-get install openssh-server
+apt-get install openssh-client
+apt-get install ssh
+apt-get install vim
+
+
 
 
