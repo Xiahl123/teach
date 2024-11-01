@@ -24,3 +24,16 @@ ffmpeg -codecs
 ffmpeg -hwaccels
 ## 查看相關解碼器參數幫助
 ffmpeg -h encode=h264_nvenc
+## 下载源码编译
+1. 下载源码：wget https://ffmpeg.org/releases/ffmpeg-4.4.2.tar.bz2
+2. 解压：    tar -xvf ffmpeg-snapshot.tar.bz2
+3. 进入解压文件：cd ffmpeg
+4. 配置编译选项：./configure --enable-shared --disable-programs --disable-doc
+参数可以参考：https://ffmpeg.xianwaizhiyin.net/build-ffmpeg/configure-args.html
+5. 编译安装：   
+    make
+    sudo make install
+可以通过./configure -h 查看安装位置及参数设置
+## 硬件解码方式代码
+nvidia:cuda
+intel:qsv

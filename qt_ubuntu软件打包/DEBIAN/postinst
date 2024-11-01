@@ -1,0 +1,7 @@
+#!/bin/sh
+chmod 777 /opt/3s_ubuntu/3s_ubuntu.desktop
+if [! -d "/usr/share/applications/"];then
+	mkdir -p /usr/share/applications/
+	echo "mkdir /usr/share/applications/"
+fi
+cp /opt/3s_ubuntu/3s_ubuntu.desktop /usr/share/applications/

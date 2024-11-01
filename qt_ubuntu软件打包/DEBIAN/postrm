@@ -1,0 +1,8 @@
+#!/bin/sh
+file = /usr/share/applications/3s_ubuntu.desktop
+if [! -f "$file"]; then
+	echo "file is exit"
+else
+	rm /usr/share/applications/3s_ubuntu.desktop
+fi
+

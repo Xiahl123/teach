@@ -140,6 +140,10 @@ colcon build
 source install/setup.bash
 ros2 run *** ***
 
+## docker中执行linuxdeployqt
+1. 解压linuxdeployqt:./linuxdeployqt --appimage-extract
+2. 进入解压目录，运行AppRun :./AppRun --version
+
   
 
 

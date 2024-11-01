@@ -1,0 +1,9 @@
+Package: 3subuntu
+Version: 1.0.1
+Section: utils
+Priority: optional
+Architecture: amd64
+Depends:
+Installed-Size: 512
+Maintainer: xiahl@ust.hk
+Description: this is a 3s control

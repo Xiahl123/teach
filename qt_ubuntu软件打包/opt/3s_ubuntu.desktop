@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=3s_ubuntu
+Exec=/opt/3s_ubuntu/3s_ubuntu
+Icon=/opt/3s_ubuntu/3s_ubuntu.png
+Comment=Edit this default file
+Terminal=true
