@@ -29,7 +29,7 @@
 # 控件,一些控件简介:https://m3.material.io/components/date-pickers/accessibility
     填充使用:padding: EdgeInsets.only(left:16*widthFactor,right: 16*widthFactor),
 ## 预设空间大小使用
-    SizedbBoxz(不自带背景设置)
+    SizedbBox(不自带背景设置)
     Container(自带背景设置)
 ## 添加点击事件 GestureDetector
     GestureDetector(
