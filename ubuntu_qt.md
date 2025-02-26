@@ -13,7 +13,7 @@ sudo apt-get install ffmpeg
 ### ffmpeg使用教程
 https://github.com/0voice/ffmpeg_develop_doc/blob/main/FFmpeg%20%E5%AD%A6%E4%B9%A0(%E4%B8%80)%EF%BC%9AFFmpeg%20%E7%AE%80%E4%BB%8B%20.md
 ## qt5安装有一些组件不会自动安装,可以手动安装,比如multimedia
-sudo apt-get insatll qtmultimedia5-dev
+sudo apt-get install qtmultimedia5-dev
 ## 使用vtk
 使用源码安装pcl1.8.1和vtk7.1
 遇到bug查找：https://blog.csdn.net/dui845819593/article/details/128486864
@@ -144,6 +144,7 @@ ros2 run *** ***
 1. 解压linuxdeployqt:./linuxdeployqt --appimage-extract
 2. 进入解压目录，运行AppRun :./AppRun --version
 
-  
+## qss属性大全
+https://www.cnblogs.com/liming19680104/p/10421547.html
 
 
