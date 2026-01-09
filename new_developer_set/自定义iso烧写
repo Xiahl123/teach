@@ -1,0 +1,138 @@
+使用软件cubic自定义iso
+自定义iso的过程会产生新的iso和中间过程文件，需要预备足够大的硬盘空间，可以是系统盘或在外接硬盘
+查看系统剩余空间：df -h   查看指定目录：df -h /home
+
+1.安装cubic：
+https://blog.csdn.net/m0_37579176/article/details/112492277
+2.定制方法及报错处理
+https://www.ncnynl.com/archives/202210/5484.html
+https://blog.csdn.net/weixin_44417500/article/details/128650426
+sudo apt-add-repository ppa:cubic-wizard/release
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6494C6D6997C215E
+sudo apt update
+sudo apt install cubic
+3.下载需要的iso文件
+后续按照提示进行，可以修改镜像的名字等信息，建议将打包日期作为命名项之一，以便区分
+4.在chroot中，自定义软件包进行安装，可以是apt下载安装，也可以是下载好的第三方deb，也可以复制现成的文件，但是不建议安装cuda驱动等与硬件关联的软件包
+4.1使用apt安装软件之前，需要使用下面的命令更新源，不然无法使用apt安装
+apt update
+add-apt-repository --yes main
+add-apt-repository --yes restricted
+add-apt-repository --yes universe
+add-apt-repository --yes multiverse
+启动apt安装，自动进入root环境，不需要使用sudo
+
+4.2存在zsys相关错误，这是正常的，可以不理会，如果想删除，可以使用
+apt --yes remove zsys 
+4.3使用deb安装，复制文件到镜像中
+复制的目录在，你选择保存中间文件的的目录下，****/custom-root/root/
+5.在所有 Linux 系统中，/etc/skel 目录是一个“骨架”或“模板”目录。它的作用是：当系统创建一个新用户时（例如，您在 Ubuntu 安装过程中创建的那个用户），系统会自动将 /etc/skel 目录里的所有文件和文件夹，原封不动地复制到新用户的主目录 (/home/新用户名/) 中去。
+6.在安装后需要进行操作，以late_command执行bash
+创建bash
+#!/bin/bash
+#     ^j Miniconda ^h .bashrc
+
+#   ^t ^t  ^h  ^n  ^|^i ^t  ^h 
+for USER_HOME in /home/*; do
+    USER=$(basename $USER_HOME)
+    [ -f "$USER_HOME/.bashrc" ] && \
+    echo 'export CUDA_HOME=/usr/local/cuda-12.8' >> "$USER_HOME/.bashrc"
+    echo 'export PATH=$CUDA_HOME/bin:$PATH' >> "$USER_HOME/.bashrc"
+    echo 'export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH' >> "$USER_HOME/.bashrc"
+    echo 'export C_INCLUDE_PATH=$C_INCLUDE_PATH:/usr/local/TensorRT-10.8.0.43/include' >> "$USER_HOME/.>
+    echo 'export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/local/TensorRT-10.8.0.43/include' >> "$USE>
+    echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu' >> "$USER_HOME/.bashrc"
+    chmod +x Miniconda3-latest-Linux-x86_64.sh
+    ./Miniconda3-latest-Linux-x86_64.sh
+    source ~/.bashrc
+done
+
+添加权限
+chmod +x /usr/local/bin/setup-minstall
+安装后执行：
+d-i preseed/late_command string in-target /usr/local/bin/setup-install
+二、制作启动盘
+ubuntu使用自带软件:startup disk
+三、安装步骤
+1.正常安装系统
+2.进入系统之后，安装网络驱动，解压，查看readme安装驱动
+3.修改bashrc启动项
+export CUDA_HOME=/usr/local/cuda-12.8
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+export C_INCLUDE_PATH=$C_INCLUDE_PATH:/usr/local/TensorRT-10.8.0.43/include
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/local/TensorRT-10.8.0.43/include
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu
+4.安装miniconda及python环境
+
+chmod +x Miniconda3-latest-Linux-x86_64.sh
+./Miniconda3-latest-Linux-x86_64.sh
+//如果需要指定安装路径，执行：
+bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda3
+source ~/.bashrc
+//如果无法启动conda，执行下面的语句
+~/miniconda3/bin/conda init bash
+//或者执行下面的语句
+source ~/miniconda3/bin/activate
+conda init bash
+//配置转换模型所需环境
+conda create -n tensorrt python=3.9
+conda activate tensorrt
+pip install -U tensorrt_yolo
+pip install torch
+pip install torch
+pip install onnx
+需要换源：
+单次换源：
+pip install torch -i https://pypi.tuna.tsinghua.edu.cn/simple
+多次换源：
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+5.拉取仓库，运行软件，转换模型
+//配置转换模型所需环境
+conda create -n tensorrt python=3.9
+conda activate tensorrt
+pip install -U tensorrt_yolo
+pip install torch
+pip install ultralytics
+pip install onnx
+
+//吊钩和人yolo11m.pt文件量化部署
+//pt->onnx
+trtyolo export -w <input_pt_path.pt> -v yolo11 -o <output_path> -b 1 -s --imgsz 736 --iou_thres=0.3 --conf_thres=0.3
+//onnx->engine
+<trtexec_path_usual_in_/usr/src/tensorrt/bin/trtexec> --onnx=<input_onnx_path.onnx> --saveEngine=<output_engine_path.engine> --fp16
+
+//吊钩和人yolo12x.pt文件量化部署
+//pt->onnx
+trtyolo export -w <input_pt_path.pt> -v ultralytics -o <output_path> -b 1 -s --imgsz 736 --iou_thres=0.3 --conf_thres=0.3
+//onnx->engine
+<trtexec_path_usual_in_/usr/src/tensorrt/bin/trtexec> --onnx=<input_onnx_path.onnx> --saveEngine=<output_engine_path.engine> --fp16
+
+//大型机械yolo11m-obb.pt文件量化部署
+//pt->onnx
+trtyolo export -w <input_pt_path.pt> -v yolo11 -o <output_path> -b 1 -s --iou_thres=0.3 --conf_thres=0.3
+//onnx->engine
+<trtexec_path_usual_in_/usr/src/tensorrt/bin/trtexec> --onnx=<input_onnx_path.onnx> --saveEngine=output_engine_path.engine> --fp16 --staticPlugins=$TensorRT-YOLO/lib/plugin/libcustom_plugins.so --setPluginsToSerialize=$TensorRT-YOLO/lib/plugin/libcustom_plugins.so
+5.1.python修改ubuntu镜像
+清华源
+https://pypi.tuna.tsinghua.edu.cn/simple
+阿里云
+https://mirrors.aliyun.com/pypi/simple
+中科大
+https://pypi.mirrors.ustc.edu.cn/simple
+豆瓣
+https://pypi.douban.com/simple
+
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+6.注意系统使用的显卡类型，当系统中存在AMD核心显卡时，需要切换显卡
+查看活跃的显卡
+sudo apt install mesa-utils
+glxinfo | grep "OpenGL renderer"
+切换为nvidia显卡
+sudo apt install nvidia-prime
+sudo prime-select nvidia
+sudo reboot
+7.查看显卡的架构二进制版本号
+nvidia-smi --query-gpu=compute_cap --format=csv
+
