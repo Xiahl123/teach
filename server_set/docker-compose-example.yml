@@ -1,0 +1,76 @@
+# Docker Compose 示例配置
+# 使用方法: docker compose -f docker-compose-example.yml up -d
+
+version: '3.8'
+
+services:
+  # 后端 API 服务
+  backend:
+    image: node:20-alpine
+    container_name: backend-service
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+    command: npm start
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # 前端 Web 服务
+  frontend:
+    image: node:20-alpine
+    container_name: frontend-service
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    command: npm start
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # PostgreSQL 数据库 (可选)
+  # postgres:
+  #   image: postgres:16-alpine
+  #   container_name: postgres-db
+  #   environment:
+  #     POSTGRES_DB: mydb
+  #     POSTGRES_USER: myuser
+  #     POSTGRES_PASSWORD: mypassword
+  #   volumes:
+  #     - postgres-data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   restart: unless-stopped
+  #   networks:
+  #     - app-network
+
+  # Redis 缓存 (可选)
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: redis-cache
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis-data:/data
+  #   restart: unless-stopped
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+# volumes:
+#   postgres-data:
+#   redis-data:
+

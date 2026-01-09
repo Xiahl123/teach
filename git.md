@@ -37,3 +37,7 @@ git clone https://user:TOKEN@ghproxy.com/https://github.com/xxxx/xxxx
 
 
 >>>>>>> .theirs
+
+
+git拉取所有分支：
+for branch in $(git branch -r | grep -v '\->'); do     git checkout --track "$branch"; done

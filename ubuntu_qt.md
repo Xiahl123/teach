@@ -147,4 +147,12 @@ ros2 run *** ***
 ## qss属性大全
 https://www.cnblogs.com/liming19680104/p/10421547.html
 
+##安装TensorRT
+sudo apt install \
+    libnvinfer-dev=10.8.0.43-1+cuda12.8 \
+    libnvinfer-plugin-dev=10.8.0.43-1+cuda12.8 \
+    libnvinfer-headers-dev=10.8.0.43-1+cuda12.8 \
+    libnvinfer-headers-plugin-dev=10.8.0.43-1+cuda12.8 \
+    libnvinfer10=10.8.0.43-1+cuda12.8 \
+    libnvinfer-plugin10=10.8.0.43-1+cuda12.8
 
