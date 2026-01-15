@@ -65,7 +65,7 @@ install_nodejs() {
     log_info "安装 Node.js 和 npm..."
     
     # 使用 NodeSource 仓库安装 LTS 版本
-    NODE_VERSION="20"  # 可以改为 18 或 22
+    NODE_VERSION="24"  # 可以改为 18 或 22
     curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash -
     apt-get install -y nodejs
     
