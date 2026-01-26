@@ -57,6 +57,8 @@ systemctl status docker
 - 站点配置: `/etc/nginx/sites-available/`
 - 启用站点: `/etc/nginx/sites-enabled/`
 - 默认已启动并设置为开机自启
+- 使用路由时，location /后需要/testapi/形式，两个斜杠不能少。
+- proxy_pass http://localhost:3000;最后不加/表示保留location在路由中，加上/表示不保留
 
 ### Docker
 
